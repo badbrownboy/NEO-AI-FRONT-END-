@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neo Super AI Dashboard</title>
+    <link rel="stylesheet" href="neo.css">
+    <!-- Google Fonts Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader">
+      <div class="justify-content-center jimu-primary-loading"></div>
+    </div>
+
+    <!-- Connection Loader (shown when no internet) -->
+    <div class="connection" id="connection-loader" style="display: none;">
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__ball"></div>
+    </div>
+
+    <!-- Main Dashboard (hidden initially) -->
+    <div class="dashboard-container" id="dashboard" style="display: none;">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2 class="sidebar-title">
+                    <span class="material-icons sidebar-logo" id="sidebar-logo-toggle">smart_toy</span>
+                    Neo AI
+                </h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-tooltip="New Chat">
+                            <span class="material-icons">add_comment</span>
+                            <span class="nav-text">New Chat</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-tooltip="Search Chats">
+                            <span class="material-icons">search</span>
+                            <span class="nav-text">Search Chats</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-tooltip="Customize Bot">
+                            <span class="material-icons">tune</span>
+                            <span class="nav-text">Customize Bot</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <ul class="footer-list">
+                    <li class="footer-item">
+                        <a href="#" class="footer-link" data-tooltip="Settings">
+                            <span class="material-icons">settings</span>
+                            <span class="footer-text">Settings</span>
+                        </a>
+                    </li>
+                    <li class="footer-item">
+                        <a href="#" class="footer-link" data-tooltip="Account">
+                            <span class="material-icons">account_circle</span>
+                            <span class="footer-text">Account</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+        <!-- Main Chat Area -->
+        <main class="chat-main">
+            <div class="center-bubble-container">
+                <div class="center-bubble">
+                    <div class="bubble-message">Search anything or ask me a question</div>
+                    <form class="bubble-input-form" id="bubble-form">
+                        <div class="bubble-input-container">
+                            <textarea class="bubble-input bubble-input-large" id="bubble-input" placeholder="Hey, I'm Neo! How can I help?" autocomplete="off" required rows="1"></textarea>
+                            <div class="bubble-input-icons">
+                                <button type="button" class="bubble-icon" id="mic-btn" aria-label="Voice input">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                                        <line x1="12" y1="19" x2="12" y2="23"/>
+                                        <line x1="8" y1="23" x2="16" y2="23"/>
+                                    </svg>
+                                </button>
+                                <div class="plus-menu-container">
+                                    <button type="button" class="bubble-icon" id="plus-btn" aria-label="Add attachment">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="12" y1="5" x2="12" y2="19"/>
+                                            <line x1="5" y1="12" x2="19" y2="12"/>
+                                        </svg>
+                                    </button>
+                                    <!-- Plus Menu Popup -->
+                                    <div class="plus-menu" id="plus-menu">
+                                        <div class="plus-menu-items">
+                                            <button type="button" class="plus-menu-item" id="images-btn" aria-label="Images">
+                                                <span class="material-icons">image</span>
+                                            </button>
+                                            <button type="button" class="plus-menu-item" id="files-btn" aria-label="Files">
+                                                <span class="material-icons">attach_file</span>
+                                            </button>
+                                            <button type="button" class="plus-menu-item" id="camera-btn" aria-label="Camera">
+                                                <span class="material-icons">camera_alt</span>
+                                            </button>
+                                            <button type="button" class="plus-menu-item" id="control-btn" aria-label="Control">
+                                                <span class="material-icons">settings</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tool-menu-container">
+                                    <button type="button" class="bubble-icon" id="tool-btn" aria-label="Tools">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                                        </svg>
+                                    </button>
+                                    <!-- Tool Menu Popup -->
+                                    <div class="tool-menu" id="tool-menu">
+                                        <div class="tool-menu-items">
+                                            <button type="button" class="tool-menu-item" id="screen-share-btn" aria-label="Screen Share">
+                                                <span class="material-icons">screen_share</span>
+                                            </button>
+                                            <button type="button" class="tool-menu-item" id="voice-assistant-btn" aria-label="Voice Assistant">
+                                                <span class="material-icons">record_voice_over</span>
+                                            </button>
+                                            <button type="button" class="tool-menu-item" id="tool-control-btn" aria-label="Control">
+                                                <span class="material-icons">settings_remote</span>
+                                            </button>
+                                            <button type="button" class="tool-menu-item" id="all-tools-btn" aria-label="All Tools">
+                                                <span class="material-icons">apps</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="neo.js"></script>
+</body>
+</html>
